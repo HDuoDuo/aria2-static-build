@@ -35,7 +35,7 @@ jobs:
     - name: Build aria2
       run: |
         make
-        make install-strip
+        make install
     - uses: actions/upload-artifact@v3
       with:
         name: aria2c
