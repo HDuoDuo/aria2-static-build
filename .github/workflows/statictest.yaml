@@ -39,7 +39,6 @@ jobs:
       run: |
         make
         make install-strip
-    - run: ls ./
     - uses: actions/upload-artifact@v3
       with:
         name: aria2c
