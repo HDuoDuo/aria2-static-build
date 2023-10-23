@@ -31,7 +31,7 @@ jobs:
         autoreconf -i
     - name: Configure autotools (Linux, openssl)
       run: |
-        ./configure --without-gnutls --with-openssl ARIA2_STATIC=yes -prefix=/usr/local/aria2c
+        ./configure --without-gnutls --with-openssl ARIA2_STATIC=yes --prefix=/usr/local/aria2c
     - name: Build aria2
       run: |
         make
