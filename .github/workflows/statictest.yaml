@@ -1,0 +1,46 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Linux setup
+      run: |
+        sudo apt-get install \
+          g++-11 \
+          libcppunit-dev \
+          autoconf \
+          automake \
+          autotools-dev \
+          autopoint \
+          libtool \
+          libssl-dev \
+          libssh2-1-dev \
+          libc-ares-dev \
+          libxml2-dev \
+          zlib1g-dev \
+          libsqlite3-dev \
+          pkg-config
+    - name: Setup gcc (Linux)
+      run: |
+        echo 'CC=gcc-11' >> $GITHUB_ENV
+        echo 'CXX=g++-11' >> $GITHUB_ENV
+    - name: Libtool
+      run: |
+        autoreconf -i
+    - name: Configure autotools (Linux, openssl)
+      run: |
+        mkdir -p src/static
+        ./configure --without-gnutls --with-openssl ARIA2_STATIC=yes -prefix=src/static
+    - name: Build aria2
+      run: |
+        make
+        make install-strip
+    - run: ls ./
+    - uses: actions/upload-artifact@v3
+      with:
+        name: aria2c
+        path: src/static
