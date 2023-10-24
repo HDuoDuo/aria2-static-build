@@ -31,13 +31,11 @@ jobs:
         autoreconf -i
     - name: Configure autotools (Linux, openssl)
       run: |
-        sudo mkdir /root/aria2c
-        ./configure --prefix=/root/aria2c --without-gnutls --with-openssl --enable-static --disable-shared
+        ./configure ARIA2_STATIC=yes --without-gnutls --with-openssl --enable-static --disable-shared
     - name: Build aria2
       run: |
         make
-        make install
     - uses: actions/upload-artifact@v3
       with:
         name: aria2c
-        path: /root/aria2c
+        path: src/aria2c
