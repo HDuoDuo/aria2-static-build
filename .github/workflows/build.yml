@@ -31,7 +31,8 @@ jobs:
         autoreconf -i
     - name: Configure autotools (Linux, openssl)
       run: |
-        ./configure --without-gnutls --with-openssl ARIA2_STATIC=yes --enable-static=yes --enable-shared=no
+        mkdir -p /home/runner/work/aria2-static-build/aria2-static-build/aria2c
+        ./configure --prefix=/home/runner/work/aria2-static-build/aria2-static-build/aria2c --without-gnutls --with-openssl ARIA2_STATIC=yes --enable-static=yes --enable-shared=no
     - name: Build aria2
       run: |
         make
@@ -39,4 +40,4 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: aria2c
-        path: /usr/local/
+        path: /home/runner/work/aria2-static-build/aria2-static-build/aria2c
