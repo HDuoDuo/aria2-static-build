@@ -8,7 +8,6 @@ jobs:
     - name: Linux setup
       run: |
         sudo apt-get install \
-          g++-11 \
           libcppunit-dev \
           autoconf \
           automake \
@@ -22,10 +21,6 @@ jobs:
           zlib1g-dev \
           libsqlite3-dev \
           pkg-config
-    - name: Setup gcc (Linux)
-      run: |
-        echo 'CC=gcc-11' >> $GITHUB_ENV
-        echo 'CXX=g++-11' >> $GITHUB_ENV
     - name: Libtool
       run: |
         autoreconf -i
