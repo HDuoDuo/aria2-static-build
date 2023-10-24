@@ -31,7 +31,7 @@ jobs:
         autoreconf -i
     - name: Configure autotools (Linux, openssl)
       run: |
-        mkdir -p /root/aria2c
+        sudo mkdir -p /root/aria2c
         ./configure --prefix=/root/aria2c --without-gnutls --with-openssl --enable-static --disable-shared
     - name: Build aria2
       run: |
