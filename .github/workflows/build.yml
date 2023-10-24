@@ -32,7 +32,7 @@ jobs:
     - name: Configure autotools (Linux, openssl)
       run: |
         mkdir -p /root/aria2c
-        ./configure --prefix=/root/aria2c --without-gnutls --with-openssl ARIA2_STATIC=yes --enable-static=yes --enable-shared=no
+        ./configure --prefix=/root/aria2c --without-gnutls --with-openssl --enable-static --disable-shared
     - name: Build aria2
       run: |
         make
